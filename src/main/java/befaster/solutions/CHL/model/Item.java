@@ -74,20 +74,6 @@ public class Item {
         return freeItems;
     }
 
-    private Long getNumberOfFreeItems(Long quantity) {
-        Long remainingQuantity = quantity;
-        Integer number = 0;
-        while (remainingQuantity > 0) {
-            // get highest offer
-            Long highestOfferQuantity = getHighestQuantityOffer(freeItemOffers.keySet(), remainingQuantity);
-            if (highestOfferQuantity == 0) {
-                break;
-            }
-            remainingQuantity -= highestOfferQuantity;
-            price += specialOffers.get(highestOfferQuantity);
-        }
-    }
-
     private Long getHighestFreeItemQuantity() {
         if (highestFreeItemQuantity == null) {
             highestFreeItemQuantity = freeItemOffers.keySet().stream().max(Long::compareTo).orElse(1L);
@@ -96,6 +82,7 @@ public class Item {
     }
 
 }
+
 
 
 

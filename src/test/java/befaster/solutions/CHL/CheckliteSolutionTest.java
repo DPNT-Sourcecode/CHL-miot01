@@ -119,13 +119,14 @@ public class CheckliteSolutionTest {
         String input = "AAAA";
 
         Integer price = solution.checklite(input);
-        assertThat(price, equalTo(200));
+        assertThat(price, equalTo(180));
 
         String input2 = "AAAAAAAA";
         Integer price2 = solution.checklite(input2);
         assertThat(price2, equalTo(330));
     }
 }
+
 
 
 
