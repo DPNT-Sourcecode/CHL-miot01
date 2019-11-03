@@ -60,12 +60,10 @@ public class CheckliteSolution {
                 Long quantity = basket.get(key);
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem == null) {
-                    System.out.println(key + " " + 0);
                     return 0;
                 }
                 else {
                     Integer price = currentItem.getPrice(quantity);
-                    System.out.println(key + " " + price);
                     return price;
                 }
             })
@@ -105,6 +103,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
