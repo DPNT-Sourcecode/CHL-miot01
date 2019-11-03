@@ -112,7 +112,7 @@ public class CheckliteSolutionTest {
         Map<String, Long> basket = solution.getQuantityPerItems(input);
         Map<FreeItemOffer, Long> freeItems = solution.getFreeItemsForBasket(basket);
 
-        assertThat(freeItems.get("B"), equalTo(2L));
+        assertThat();
     }
 
     @Test
@@ -138,5 +138,6 @@ public class CheckliteSolutionTest {
         assertThat(price2, equalTo(20));
     }
 }
+
 
 

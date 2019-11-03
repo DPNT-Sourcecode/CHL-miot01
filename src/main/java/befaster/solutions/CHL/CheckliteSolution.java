@@ -50,8 +50,8 @@ public class CheckliteSolution {
         );
         marketDatabase.put("D", itemD);
 
-        Map<Long, String> freeItemsE = new HashMap<>();
-        freeItemsE.put(2L, "B");
+        Map<Long, FreeItemOffer> freeItemsE = new HashMap<>();
+        freeItemsE.put(2L, new FreeItemOffer("B", 1L, 2L));
         Item itemE = new Item(
             "E",
             40,
@@ -60,8 +60,8 @@ public class CheckliteSolution {
         );
         marketDatabase.put("E", itemE);
 
-        Map<Long, String> freeItemsF = new HashMap<>();
-        freeItemsF.put(2L, "F");
+        Map<Long, FreeItemOffer> freeItemsF = new HashMap<>();
+        freeItemsF.put(2L, new FreeItemOffer("F", 1L, 3L));
         Item itemF = new Item(
             "F",
             10,
@@ -171,5 +171,6 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 

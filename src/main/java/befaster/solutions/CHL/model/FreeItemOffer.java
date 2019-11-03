@@ -4,9 +4,9 @@ public class FreeItemOffer {
 
     private String offeredItem;
     private Long quantity;
-    private String requiredQuantity;
+    private Long requiredQuantity;
 
-    public FreeItemOffer(String offeredItem, Long quantity, String requiredQuantity) {
+    public FreeItemOffer(String offeredItem, Long quantity, Long requiredQuantity) {
         this.offeredItem = offeredItem;
         this.quantity = quantity;
         this.requiredQuantity = requiredQuantity;
@@ -20,7 +20,8 @@ public class FreeItemOffer {
         return quantity;
     }
 
-    public String getRequiredQuantity() {
+    public Long getRequiredQuantity() {
         return requiredQuantity;
     }
 }
+
