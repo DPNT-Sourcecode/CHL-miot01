@@ -40,5 +40,3 @@ public class AvailableFreeOffer {
         return basketQuantity/offer.getRequiredQuantity() * offer.getQuantity();
     }
 }
-
-
