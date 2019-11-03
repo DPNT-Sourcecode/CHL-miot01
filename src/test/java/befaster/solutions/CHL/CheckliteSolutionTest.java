@@ -18,7 +18,7 @@ public class CheckliteSolutionTest {
 
     @Test
     public void checkQuantityForItemsTest() {
-        String input = "A,B,C,A";
+        String input = "ABCA";
 
         Map<String, Long> quantityPerItems = solution.getQuantityPerItems(input);
         assertThat(quantityPerItems.size(), equalTo(3));
@@ -53,14 +53,14 @@ public class CheckliteSolutionTest {
 
     @Test
     public void checkQuantityTrailingComma() {
-        String input = "A,";
+        String input = "A";
         Map<String, Long> quantityPerItem = solution.getQuantityPerItems(input);
         assertThat(quantityPerItem.size(), equalTo(1));
     }
 
     @Test
     public void testBasketPrice() {
-        String input = "A,B,C";
+        String input = "ABC";
         Integer price = solution.checklite(input);
 
         assertThat(price, equalTo(100));
@@ -68,7 +68,7 @@ public class CheckliteSolutionTest {
 
     @Test
     public void testBasketPriceWithOffers() {
-        String input = "A,B,A,B,A,C";
+        String input = "ABABAC";
         Integer price = solution.checklite(input);
 
         assertThat(price, equalTo(195));
@@ -89,5 +89,3 @@ public class CheckliteSolutionTest {
         assertThat(price3, equalTo(-1));
     }
 }
-
-

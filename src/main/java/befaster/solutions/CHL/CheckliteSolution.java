@@ -93,14 +93,10 @@ public class CheckliteSolution {
         skus = skus.replaceAll("\\s+","");
 
         // we assume that the sku is a comma separate list of items
-        List<String> items = Arrays.asList(skus);
+        List<String> items = Arrays.asList(skus.split(","));
 
         return items.stream()
             .filter(string -> ! string.isEmpty())
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-

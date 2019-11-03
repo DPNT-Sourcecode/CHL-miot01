@@ -54,5 +54,3 @@ public class ItemTest {
         assertThat(price, equalTo(230));
     }
 }
-
-
