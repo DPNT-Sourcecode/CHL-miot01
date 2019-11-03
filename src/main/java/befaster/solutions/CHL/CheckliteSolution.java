@@ -62,20 +62,29 @@ public class CheckliteSolution {
             .addFreeItemOffer(
                 2L,
                 new FreeItemOfferBuilder()
-                    .item("B")
+                    .item("F")
                     .quantity(1L)
+                    .requiredQuantity(3L)
                     .build()
             )
             .build();
-        Map<Long, FreeItemOffer> freeItemsF = new HashMap<>();
-        freeItemsF.put(2L, new FreeItemOffer("F", 1L, 3L));
-        Item itemF = new Item(
-            "F",
-            10,
-            Collections.emptyMap(),
-            freeItemsF
-        );
         marketDatabase.put("F", itemF);
+
+        Item itemG = new ItemBuilder()
+            .sku("G")
+            .price(20)
+            .build();
+        marketDatabase.put("G", itemG);
+
+        Item itemH = new ItemBuilder()
+            .sku("H")
+            .price(10)
+            .addSpecialOffer(5L, 45)
+            .addSpecialOffer(10L, 80)
+            .build();
+        marketDatabase.put("H", itemH);
+
+        
     }
 
     public Integer checklite(String skus) {
@@ -186,4 +195,5 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
