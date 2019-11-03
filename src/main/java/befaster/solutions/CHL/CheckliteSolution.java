@@ -99,11 +99,12 @@ public class CheckliteSolution {
                 }
             })
             .map(Map::entrySet)
-            .flatMap()
+            .flatMap(Collection::stream)
             .collect(
-                Collectors.groupingBy(
+                Collectors.toMap(
                     Map.Entry::getKey,
-                    Collectors.summarizingLong(Map.Entry::getValue)
+                    Map.Entry::getValue,
+                    Long::sum
                 )
             );
     }
@@ -141,6 +142,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
