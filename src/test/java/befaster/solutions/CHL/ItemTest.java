@@ -24,8 +24,7 @@ public class ItemTest {
             itemAOffers
         );
     }
-
-
+    
     @Test
     public void testNormalPrice() {
         Integer price = item.getPrice(1L);
@@ -53,4 +52,7 @@ public class ItemTest {
 
         assertThat(price, equalTo(230));
     }
+
+    public void
 }
+

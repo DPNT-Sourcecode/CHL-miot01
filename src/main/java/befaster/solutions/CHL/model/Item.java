@@ -1,5 +1,6 @@
 package befaster.solutions.CHL.model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,10 +47,20 @@ public class Item {
     }
 
     public Map<String, Long> getFreeItems(Long quantity) {
+        Map<String, Long> freeItems = new HashMap<>();
+
         if (! freeItemOffers.isEmpty() && quantity > getHighestFreeItemQuantity()) {
             Long offerNumber = quantity/getHighestOfferQuantity();
-            
+            freeItems.put(freeItemOffers.get(getHighestOfferQuantity()), offerNumber);
         }
+        else {
+            String itemSku = freeItemOffers.get(quantity);
+            if (itemSku != null) {
+                freeItems.put(itemSku, 1L);
+            }
+        }
+
+        return freeItems;
     }
 
     private Long getHighestFreeItemQuantity() {
@@ -66,3 +77,4 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
