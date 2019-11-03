@@ -28,6 +28,11 @@ public class AvailableFreeOffer {
     public Long getRequiredQuantity() {
         return offer.getRequiredQuantity() * quantity;
     }
+
+    public Long getValidQuantity(Long basketQuantity) {
+        if (basketQuantity < offer.getRequiredQuantity()) {
+            return 0L;
+        }
+        return basketQuantity/offer.getRequiredQuantity();
+    }
 }
-
-

@@ -89,10 +89,8 @@ public class CheckliteSolution {
                 Map.Entry::getKey,
                 entry -> {
                     AvailableFreeOffer freeOffer = freeItems.getOrDefault(entry.getKey(), null);
-                    if (freeOffer != null &&
-                        // check that we meet the requirements for this offer
-                        freeOffer.getRequiredQuantity() <= basket.get(entry.getKey())) {
-                        return entry.getValue() - freeOffer.getQuantity();
+                    if (freeOffer != null) {
+                        return entry.getValue() - freeOffer.getValidQuantity(entry.getValue());
                     }
                     else {
                         return entry.getValue();
@@ -182,11 +180,3 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-
-
-
-
-
