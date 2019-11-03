@@ -87,7 +87,15 @@ public class CheckliteSolution {
             .sum();
     }
 
-    
+    private Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
+        basket.keySet().stream()
+            .map(key -> {
+                Item currentItem = marketDatabase.get(key);
+                if (currentItem != null) {
+                    Map<String, Long> freeItems = currentItem.getFreeItems(basket.get(key));
+                }
+            })
+    }
 
     private boolean isInputValid(String skus) {
         char[] chars = skus.toCharArray();
@@ -122,6 +130,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
