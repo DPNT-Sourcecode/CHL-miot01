@@ -129,8 +129,12 @@ public class CheckliteSolutionTest {
     @Test
     public void testBuy2GetOneFree() {
         String input = "FFF";
-
         Integer price = solution.checklite(input);
         assertThat(price, equalTo(20));
+
+        String input2 = "FF";
+        Integer price2 = solution.checklite(input2);
+        assertThat(price2, equalTo(20));
     }
 }
+
