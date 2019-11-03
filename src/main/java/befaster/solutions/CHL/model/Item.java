@@ -14,14 +14,14 @@ public class Item {
     private Map<Long, Integer> specialOffers;
 
     // map of free item offers, quantity -item sku
-    private Map<Long, String> freeItemOffers;
+    private Map<Long, FreeItemOffer> freeItemOffers;
     private Long highestFreeItemQuantity;
 
     public Item(
         String sku,
         Integer defaultPrice,
         Map<Long, Integer> offers,
-        Map<Long, String> freeItemOffers
+        Map<Long, FreeItemOffer> freeItemOffers
     ) {
         this.sku = sku;
         this.defaultPrice = defaultPrice;
@@ -56,12 +56,14 @@ public class Item {
             .orElse(0L);
     }
 
-    public Map<String, Long> getFreeItems(Long quantity) {
+    public Map<String, FreeItemOffer> getFreeItems(Long quantity) {
         Map<String, Long> freeItems = new HashMap<>();
 
         if (! freeItemOffers.isEmpty() && quantity > getHighestFreeItemQuantity()) {
             Long offerNumber = quantity/getHighestFreeItemQuantity();
-            freeItems.put(freeItemOffers.get(getHighestFreeItemQuantity()), offerNumber);
+            freeItems.put(
+                freeItemOffers.get(getHighestFreeItemQuantity()).getOfferedItem(),
+                offerNumber);
         }
         else {
             String itemSku = freeItemOffers.get(quantity);
@@ -81,4 +83,5 @@ public class Item {
     }
 
 }
+
 
