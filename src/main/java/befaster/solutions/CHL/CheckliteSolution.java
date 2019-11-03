@@ -30,11 +30,19 @@ public class CheckliteSolution {
         );
         marketDatabase.put("B", itemB);
 
+        Item itemC = new Item(
+            "C",
+            20L,
+            Collections.emptyMap()
+        );
+        marketDatabase.put("C", itemB);
 
-    }
-
-    public CheckliteSolution(List<Item> items) {
-
+        Item itemD = new Item(
+            "D",
+            15L,
+            Collections.emptyMap()
+        );
+        marketDatabase.put("D", itemD);
     }
 
     public Integer checklite(String skus) {
@@ -43,7 +51,13 @@ public class CheckliteSolution {
         basket.keySet().stream()
             .map(key -> {
                 Long quantity = basket.get(key);
-
+                Item currentItem = marketDatabase.get(key);
+                if (currentItem == null) {
+                    return 0;
+                }
+                else {
+                    return currentItem.getPrice(quantity);
+                }
             });
     }
 
@@ -67,6 +81,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
