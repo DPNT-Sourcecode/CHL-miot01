@@ -12,6 +12,10 @@ public class Item {
     // map of special offers, quantity - price
     private Map<Long, Integer> specialOffers;
 
+    // map of free item offers, quantity -item sku
+    private Map<Long, String> freeItemOffers;
+
+
     private Long highestOfferQuantity = null;
 
     public Item(
@@ -49,5 +53,6 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
 
 
