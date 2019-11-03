@@ -1,5 +1,7 @@
 package befaster.solutions.CHL;
 
+import befaster.solutions.CHL.model.AvailableFreeOffer;
+import befaster.solutions.CHL.model.FreeItemOffer;
 import befaster.solutions.CHL.model.Item;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +22,8 @@ public class ItemTest {
         Map<Long, Integer> itemAOffers = new HashMap<>();
         itemAOffers.put(3L, 130);
         itemAOffers.put(5L, 200);
-        Map<Long, String> freeItemOffers = new HashMap<>();
-        freeItemOffers.put(2L, "B");
+        Map<Long, FreeItemOffer> freeItemOffers = new HashMap<>();
+        freeItemOffers.put(2L, new FreeItemOffer("B", 1L, 2L));
         this.item = new Item(
             "A",
             50,
@@ -60,21 +62,21 @@ public class ItemTest {
 
     @Test
     public void freeItem() {
-        Map<String, Long> freeItems = item.getFreeItems(2L);
+        Map<String, AvailableFreeOffer> freeItems = item.getFreeItems(2L);
 
-        assertThat(freeItems.get("B"), equalTo(1L));
+        assertThat(freeItems.get("B").getQuantity(), equalTo(1L));
     }
 
     @Test
     public void multipleFreeItem() {
-        Map<String, Long> freeItems = item.getFreeItems(5L);
+        Map<String, AvailableFreeOffer> freeItems = item.getFreeItems(5L);
 
-        assertThat(freeItems.get("B"), equalTo(2L));
+        assertThat(freeItems.get("B").getQuantity(), equalTo(2L));
     }
 
     @Test
     public void noFreeItem() {
-        Map<String, Long> freeItems = item.getFreeItems(1L);
+        Map<String, AvailableFreeOffer> freeItems = item.getFreeItems(1L);
 
         assertTrue(freeItems.isEmpty());
     }
@@ -88,7 +90,7 @@ public class ItemTest {
             Collections.emptyMap()
         );
 
-        Map<String, Long> freeItems = item2.getFreeItems(1L);
+        Map<String, AvailableFreeOffer> freeItems = item2.getFreeItems(1L);
         assertTrue(freeItems.isEmpty());
     }
 
@@ -101,3 +103,4 @@ public class ItemTest {
         assertThat(price2, equalTo(300));
     }
 }
+

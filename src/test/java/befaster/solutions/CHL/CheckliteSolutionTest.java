@@ -1,6 +1,6 @@
 package befaster.solutions.CHL;
 
-import befaster.solutions.CHL.model.FreeItemOffer;
+import befaster.solutions.CHL.model.AvailableFreeOffer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -110,9 +110,9 @@ public class CheckliteSolutionTest {
     public void testNumberOfFreeItems() {
         String input = "EEEE";
         Map<String, Long> basket = solution.getQuantityPerItems(input);
-        Map<FreeItemOffer, Long> freeItems = solution.getFreeItemsForBasket(basket);
+        Map<String, AvailableFreeOffer> freeItems = solution.getFreeItemsForBasket(basket);
 
-
+        assertThat(freeItems.get("B").getQuantity(), equalTo(2L));
     }
 
     @Test
@@ -135,9 +135,10 @@ public class CheckliteSolutionTest {
 
         String input2 = "FF";
         Integer price2 = solution.checklite(input2);
-        assertThat(price2, equalTo(20));
+        assertThat(price, equalTo(20));
     }
 }
+
 
 
 
