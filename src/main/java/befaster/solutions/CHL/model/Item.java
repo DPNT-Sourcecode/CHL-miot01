@@ -79,7 +79,3 @@ public class Item {
         return highestOfferQuantity;
     }
 }
-
-
-
-

@@ -93,13 +93,14 @@ public class CheckliteSolution {
             .flatMap(key -> {
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem != null) {
-                    return currentItem.getFreeItems(basket.get(key)).entrySet();
+                    return currentItem.getFreeItems(basket.get(key)).entrySet().stream();
                 }
                 else {
-                    return Collections.emptyMap().entrySet();
+                    return Collections.emptyMap().entrySet().stream();
                 }
             })
-            .reduce()
+            .collect(Collectors.groupingBy(Map.Entry::getKey,
+                Collectors.summingInt(Map.Entry::getValue)));
 
     }
 
@@ -136,11 +137,3 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-
-
-
-
-
