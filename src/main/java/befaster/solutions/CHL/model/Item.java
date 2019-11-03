@@ -48,6 +48,25 @@ public class Item {
         }
     }
 
+    public Integer getPrice2(Long quantity) {
+        Long remainingQuantity = quantity;
+        Integer price = 0;
+        while (remainingQuantity > 0) {
+            // get highest offer
+            Long highestOfferQuantity = getHighestQuantityOffer(remainingQuantity);
+            remainingQuantity -= highestOfferQuantity;
+            price += specialOffers.get(highestOfferQuantity);
+        }
+    }
+
+    private Long getHighestQuantityOffer(Long quantity) {
+        return specialOffers.keySet()
+            .stream()
+            .filter(offerQuantity -> offerQuantity <= quantity)
+            .max(Long::compareTo)
+            .orElse(0L);
+    }
+
     public Map<String, Long> getFreeItems(Long quantity) {
         Map<String, Long> freeItems = new HashMap<>();
 
@@ -79,3 +98,4 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
