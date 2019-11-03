@@ -67,5 +67,14 @@ public class CheckliteSolutionTest {
 
         assertThat(price, equalTo(100));
     }
+
+    @Test
+    public void testBasketPriceWithOffers() {
+        String input = "A,B,A,B,A,C";
+        Integer price = solution.checklite(input);
+
+        assertThat(price, equalTo(195));
+    }
 }
+
 
