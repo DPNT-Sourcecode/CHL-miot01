@@ -48,8 +48,8 @@ public class CheckliteSolution {
     public Integer checklite(String skus) {
         Map<String, Long> basket = getQuantityPerItems(skus);
 
-        basket.keySet().stream()
-            .map(key -> {
+        return basket.keySet().stream()
+            .mapToInt(key -> {
                 Long quantity = basket.get(key);
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem == null) {
@@ -58,7 +58,8 @@ public class CheckliteSolution {
                 else {
                     return currentItem.getPrice(quantity);
                 }
-            });
+            })
+        .sum();
     }
 
     /**
@@ -81,6 +82,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 

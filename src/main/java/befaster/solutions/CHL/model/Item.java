@@ -7,24 +7,25 @@ public class Item {
 
     private String sku;
     // the price for one item
-    private Long defaultPrice;
+    private Integer defaultPrice;
     // map of special offers, quantity - price
-    private Map<Long, Long> specialOffers;
+    private Map<Long, Integer> specialOffers;
 
     public Item(
         String sku,
-        Long defaultPrice,
-        Map<Long, Long> offers
+        Integer defaultPrice,
+        Map<Long, Integer> offers
     ) {
         this.sku = sku;
         this.defaultPrice = defaultPrice;
         this.specialOffers = offers;
     }
 
-    public Long getPrice(Long quantity) {
+    public Integer getPrice(Long quantity) {
         return specialOffers.getOrDefault(quantity, defaultPrice);
     }
 }
+
 
 
 
