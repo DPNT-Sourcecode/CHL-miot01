@@ -85,10 +85,3 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-
-
-
-
