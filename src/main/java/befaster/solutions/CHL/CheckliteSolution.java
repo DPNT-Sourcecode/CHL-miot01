@@ -65,6 +65,11 @@ public class CheckliteSolution {
             .sum();
     }
 
+    private boolean isInputValid(String skus) {
+        Arrays.asList(skus.toCharArray()).stream()
+            .allMatch(c -> c.)
+    }
+
     /**
      * Gets the quantity for each item in the basket
      * @param skus comma separated list of items
@@ -85,3 +90,4 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
