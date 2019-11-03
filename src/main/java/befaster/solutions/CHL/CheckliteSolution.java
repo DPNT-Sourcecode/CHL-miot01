@@ -104,7 +104,8 @@ public class CheckliteSolution {
             .sum();
     }
 
-    private Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
+    // Is public only for testing.. doing this for speed
+    public Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
         return basket.keySet().stream()
             .map(key -> {
                 Item currentItem = marketDatabase.get(key);
@@ -159,6 +160,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 

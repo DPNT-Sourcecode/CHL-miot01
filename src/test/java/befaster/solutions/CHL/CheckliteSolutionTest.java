@@ -96,4 +96,15 @@ public class CheckliteSolutionTest {
         Integer price = solution.checklite(input);
         assertThat(price, equalTo(215));
     }
+
+    @Test
+    public void withFreeItems() {
+        String input = "EEB";
+
+        Integer price = solution.checklite(input);
+        assertThat(price, equalTo(80));
+    }
+
+    
 }
+
