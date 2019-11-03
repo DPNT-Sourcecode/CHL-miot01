@@ -21,11 +21,13 @@ public class Item {
     public Item(
         String sku,
         Integer defaultPrice,
-        Map<Long, Integer> offers
+        Map<Long, Integer> offers,
+        Map<Long, String> freeItemOffers
     ) {
         this.sku = sku;
         this.defaultPrice = defaultPrice;
         this.specialOffers = offers;
+        this.freeItemOffers = freeItemOffers;
     }
 
     public Integer getPrice(Long quantity) {
@@ -77,4 +79,5 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
 

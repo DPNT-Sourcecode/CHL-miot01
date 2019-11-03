@@ -17,7 +17,8 @@ public class CheckliteSolution {
         Item itemA = new Item(
             "A",
             50,
-            itemAOffers
+            itemAOffers,
+            Collections.emptyMap()
         );
         marketDatabase.put("A", itemA);
 
@@ -26,13 +27,15 @@ public class CheckliteSolution {
         Item itemB = new Item(
             "B",
             30,
-            itemBOffers
+            itemBOffers,
+            Collections.emptyMap()
         );
         marketDatabase.put("B", itemB);
 
         Item itemC = new Item(
             "C",
             20,
+            Collections.emptyMap(),
             Collections.emptyMap()
         );
         marketDatabase.put("C", itemC);
@@ -40,9 +43,18 @@ public class CheckliteSolution {
         Item itemD = new Item(
             "D",
             15,
+            Collections.emptyMap(),
             Collections.emptyMap()
         );
         marketDatabase.put("D", itemD);
+
+        Item itemE = new Item(
+            "E",
+            15,
+            Collections.emptyMap(),
+            Collections.emptyMap()
+        );
+        marketDatabase.put("E", itemE);
     }
 
     public Integer checklite(String skus) {
@@ -103,3 +115,4 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+

@@ -18,13 +18,16 @@ public class ItemTest {
     public void setup() {
         Map<Long, Integer> itemAOffers = new HashMap<>();
         itemAOffers.put(3L, 130);
+        Map<Long, String> freeItemOffers = new HashMap<>();
+        freeItemOffers.put(2L, "B");
         this.item = new Item(
             "A",
             50,
-            itemAOffers
+            itemAOffers,
+            freeItemOffers
         );
     }
-    
+
     @Test
     public void testNormalPrice() {
         Integer price = item.getPrice(1L);
@@ -53,6 +56,12 @@ public class ItemTest {
         assertThat(price, equalTo(230));
     }
 
-    public void
+    @Test
+    public void freeItem() {
+        Map<String, Long> freeItems = item.getFreeItems(2L);
+
+        assertThat(freeItems.get("B"), equalTo(1L));
+    }
 }
+
 
