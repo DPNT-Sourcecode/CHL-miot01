@@ -1,5 +1,6 @@
 package befaster.solutions.CHL;
 
+import befaster.solutions.CHL.model.FreeItemOffer;
 import befaster.solutions.CHL.model.Item;
 
 import java.util.*;
@@ -81,7 +82,7 @@ public class CheckliteSolution {
         }
 
         // remove free items
-        final Map<String, Long> freeItems = getFreeItemsForBasket(basket);
+        final Map<FreeItemOffer, Long> freeItems = getFreeItemsForBasket(basket);
         Map<String, Long> finalBasket = basket.entrySet().stream()
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
@@ -115,7 +116,7 @@ public class CheckliteSolution {
     }
 
     // Is public only for testing.. doing this for speed
-    public Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
+    public Map<FreeItemOffer, Long> getFreeItemsForBasket(Map<String, Long> basket) {
         return basket.keySet().stream()
             .map(key -> {
                 Item currentItem = marketDatabase.get(key);
@@ -123,7 +124,7 @@ public class CheckliteSolution {
                     return currentItem.getFreeItems(basket.get(key));
                 }
                 else {
-                    return Collections.<String, Long>emptyMap();
+                    return Collections.<FreeItemOffer, Long>emptyMap();
                 }
             })
             .map(Map::entrySet)
@@ -170,4 +171,5 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 

@@ -56,17 +56,17 @@ public class Item {
             .orElse(0L);
     }
 
-    public Map<String, FreeItemOffer> getFreeItems(Long quantity) {
-        Map<String, Long> freeItems = new HashMap<>();
+    public Map<FreeItemOffer, Long> getFreeItems(Long quantity) {
+        Map<FreeItemOffer, Long> freeItems = new HashMap<>();
 
         if (! freeItemOffers.isEmpty() && quantity > getHighestFreeItemQuantity()) {
             Long offerNumber = quantity/getHighestFreeItemQuantity();
             freeItems.put(
-                freeItemOffers.get(getHighestFreeItemQuantity()).getOfferedItem(),
+                freeItemOffers.get(getHighestFreeItemQuantity()),
                 offerNumber);
         }
         else {
-            String itemSku = freeItemOffers.get(quantity);
+            FreeItemOffer itemSku = freeItemOffers.get(quantity);
             if (itemSku != null) {
                 freeItems.put(itemSku, 1L);
             }
@@ -83,5 +83,6 @@ public class Item {
     }
 
 }
+
 
 
