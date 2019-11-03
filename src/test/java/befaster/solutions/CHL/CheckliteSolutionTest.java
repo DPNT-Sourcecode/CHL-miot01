@@ -59,4 +59,13 @@ public class CheckliteSolutionTest {
         Map<String, Long> quantityPerItem = solution.getQuantityPerItems(input);
         assertThat(quantityPerItem.size(), equalTo(1));
     }
+
+    @Test
+    public void testBasketPrice() {
+        String input = "A,B,C";
+        Integer price = solution.checklite(input);
+
+        assertThat(price, equalTo(100));
+    }
 }
+

@@ -12,34 +12,34 @@ public class CheckliteSolution {
 
     public CheckliteSolution() {
         // Hardcoding this to save time
-        Map<Long, Long> itemAOffers = new HashMap<>();
-        itemAOffers.put(3L, 130L);
+        Map<Long, Integer> itemAOffers = new HashMap<>();
+        itemAOffers.put(3L, 130);
         Item itemA = new Item(
             "A",
-            50L,
+            50,
             itemAOffers
         );
         marketDatabase.put("A", itemA);
 
-        Map<Long, Long> itemBOffers = new HashMap<>();
-        itemAOffers.put(2L, 45L);
+        Map<Long, Integer> itemBOffers = new HashMap<>();
+        itemAOffers.put(2L, 45);
         Item itemB = new Item(
             "B",
-            30L,
+            30,
             itemAOffers
         );
         marketDatabase.put("B", itemB);
 
         Item itemC = new Item(
             "C",
-            20L,
+            20,
             Collections.emptyMap()
         );
-        marketDatabase.put("C", itemB);
+        marketDatabase.put("C", itemC);
 
         Item itemD = new Item(
             "D",
-            15L,
+            15,
             Collections.emptyMap()
         );
         marketDatabase.put("D", itemD);
@@ -47,6 +47,9 @@ public class CheckliteSolution {
 
     public Integer checklite(String skus) {
         Map<String, Long> basket = getQuantityPerItems(skus);
+        if (basket.isEmpty()) {
+            return 0;
+        }
 
         return basket.keySet().stream()
             .mapToInt(key -> {
@@ -59,7 +62,7 @@ public class CheckliteSolution {
                     return currentItem.getPrice(quantity);
                 }
             })
-        .sum();
+            .sum();
     }
 
     /**
@@ -82,6 +85,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
