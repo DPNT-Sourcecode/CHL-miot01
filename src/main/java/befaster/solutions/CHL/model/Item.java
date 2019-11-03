@@ -34,7 +34,7 @@ public class Item {
         // we need to check how many times do we have the offer in the quantity we get
         // so we can have an offer for 3 but the quantity is 7 so we would have 2*offer + normal price
         if (! specialOffers.isEmpty() && quantity > getHighestOfferQuantity()) {
-            Long offerNumber = quantity/getHighestOfferQuantity();
+            Long offerNumber = quantity/getHighestOfferQuantity() + 1;
             Long remainingSoloItems = quantity%getHighestOfferQuantity();
             return
                 offerNumber.intValue()*specialOffers.get(getHighestOfferQuantity())
@@ -52,7 +52,7 @@ public class Item {
         Map<String, Long> freeItems = new HashMap<>();
 
         if (! freeItemOffers.isEmpty() && quantity > getHighestFreeItemQuantity()) {
-            Long offerNumber = quantity/getHighestOfferQuantity();
+            Long offerNumber = quantity/getHighestOfferQuantity() + 1;
             freeItems.put(freeItemOffers.get(getHighestOfferQuantity()), offerNumber);
         }
         else {
@@ -79,5 +79,6 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
 
 

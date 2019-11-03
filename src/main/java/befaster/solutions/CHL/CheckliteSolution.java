@@ -48,11 +48,13 @@ public class CheckliteSolution {
         );
         marketDatabase.put("D", itemD);
 
+        Map<Long, String> freeItemsE = new HashMap<>();
+        freeItemsE.put(2L, "B");
         Item itemE = new Item(
             "E",
-            15,
+            40,
             Collections.emptyMap(),
-            Collections.emptyMap()
+            freeItemsE
         );
         marketDatabase.put("E", itemE);
     }
@@ -115,4 +117,5 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 

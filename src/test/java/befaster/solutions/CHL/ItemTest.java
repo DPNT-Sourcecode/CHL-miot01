@@ -62,6 +62,14 @@ public class ItemTest {
 
         assertThat(freeItems.get("B"), equalTo(1L));
     }
+
+    @Test
+    public void multipleFreeItem() {
+        Map<String, Long> freeItems = item.getFreeItems(5L);
+
+        assertThat(freeItems.get("B"), equalTo(2L));
+    }
 }
+
 
 
