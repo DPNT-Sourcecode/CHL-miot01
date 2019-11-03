@@ -90,7 +90,8 @@ public class CheckliteSolution {
                 entry -> {
                     AvailableFreeOffer freeOffer = freeItems.getOrDefault(entry.getKey(), null);
                     if (freeOffer != null &&
-                        freeOffer.getOffer().getRequiredQuantity() <= basket.get(entry.getKey())) {
+                        // check that we meet the requirements for this offer
+                        freeOffer.getRequiredQuantity() <= basket.get(entry.getKey())) {
                         return entry.getValue() - freeOffer.getQuantity();
                     }
                     else {
@@ -181,6 +182,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 

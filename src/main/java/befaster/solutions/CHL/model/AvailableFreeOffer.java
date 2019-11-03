@@ -24,5 +24,10 @@ public class AvailableFreeOffer {
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
+
+    public Long getRequiredQuantity() {
+        return offer.getRequiredQuantity() * quantity;
+    }
 }
+
 
