@@ -89,7 +89,8 @@ public class CheckliteSolution {
                 Map.Entry::getKey,
                 entry -> {
                     AvailableFreeOffer freeOffer = freeItems.getOrDefault(entry.getKey(), null);
-                    if (freeOffer != null && freeOffer.getOffer().getRequiredQuantity() < basket.get(entry.getKey())) {
+                    if (freeOffer != null &&
+                        freeOffer.getOffer().getRequiredQuantity() <= basket.get(entry.getKey())) {
                         return entry.getValue() - freeOffer.getQuantity();
                     }
                     else {
@@ -139,7 +140,10 @@ public class CheckliteSolution {
                 Collectors.toMap(
                     Map.Entry::getKey,
                     Map.Entry::getValue,
-                    Long::sum
+                    (availableFreeOffer, availableFreeOffer2) -> new AvailableFreeOffer(
+                        availableFreeOffer.getOffer(),
+                        availableFreeOffer.getQuantity() + availableFreeOffer2.getQuantity()
+                    )
                 )
             );
     }
@@ -177,6 +181,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
