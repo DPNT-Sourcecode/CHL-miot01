@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 public class CheckliteSolution {
     public Integer checklite(String skus) {
-        throw new SolutionNotImplementedException();
+        Map<String, Long> basket = getQuantityPerItems(skus);
+
+        
     }
 
     /**
@@ -23,6 +25,8 @@ public class CheckliteSolution {
         if (skus == null || skus.isEmpty()) {
             return Collections.emptyMap();
         }
+        // removing empty space so we don't miss indentify items
+        skus = skus.replaceAll("\\s+","");
 
         // we assume that the sku is a comma separate list of items
         List<String> items = Arrays.asList(skus.split(","));
@@ -32,6 +36,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 

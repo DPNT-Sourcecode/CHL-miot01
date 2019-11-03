@@ -52,7 +52,15 @@ public class CheckliteSolutionTest {
         Map<String, Long> quantityPerItem3 = solution.getQuantityPerItems(input3);
         assertTrue(quantityPerItem3.isEmpty());
     }
+
+    @Test
+    public void checkQuantityTrailingComma() {
+        String input = "A,";
+        Map<String, Long> quantityPerItem = solution.getQuantityPerItems(input);
+        assertThat(quantityPerItem.size(), equalTo(1));
+    }
 }
+
 
 
 
