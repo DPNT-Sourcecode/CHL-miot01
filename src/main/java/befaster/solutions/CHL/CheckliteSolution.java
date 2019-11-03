@@ -71,7 +71,15 @@ public class CheckliteSolution {
         }
 
         // remove free items
-        Map<String, Long> freeItems = getFreeItemsForBasket(basket);
+        final Map<String, Long> freeItems = getFreeItemsForBasket(basket);
+        basket.entrySet().stream()
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                entry -> {
+                    Long freeItemCount = freeItems.getOrDefault(entry.getKey(), 0L);
+                    Long remaining = entry - 
+                }
+            ))
 
         return basket.keySet().stream()
             .mapToInt(key -> {
@@ -143,6 +151,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
