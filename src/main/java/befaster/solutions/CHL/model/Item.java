@@ -26,7 +26,7 @@ public class Item {
     public Integer getPrice(Long quantity) {
         // we need to check how many times do we have the offer in the quantity we get
         // so we can have an offer for 3 but the quantity is 7 so we would have 2*offer + normal price
-        if (quantity > getHighestOfferQuantity()) {
+        if (! specialOffers.isEmpty() && quantity > getHighestOfferQuantity()) {
             Long offerNumber = quantity/getHighestOfferQuantity();
             Long remainingSoloItems = quantity%getHighestOfferQuantity();
             return
@@ -46,3 +46,4 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
