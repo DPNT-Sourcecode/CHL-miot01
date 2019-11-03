@@ -29,7 +29,7 @@ public class Item {
         if (quantity > getHighestOfferQuantity()) {
             Long offerNumber = quantity/getHighestOfferQuantity();
             Long remainingSoloItems = quantity%getHighestOfferQuantity();
-            return 
+            return
                 offerNumber.intValue()*specialOffers.get(getHighestOfferQuantity())
                 + remainingSoloItems.intValue() * defaultPrice;
 
@@ -46,4 +46,5 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
 
