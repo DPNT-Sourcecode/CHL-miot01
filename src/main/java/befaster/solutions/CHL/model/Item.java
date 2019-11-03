@@ -2,6 +2,7 @@ package befaster.solutions.CHL.model;
 
 import java.util.Map;
 
+
 public class Item {
 
     private String sku;
@@ -14,4 +15,5 @@ public class Item {
         return specialOffers.getOrDefault(quantity, defaultPrice);
     }
 }
+
 

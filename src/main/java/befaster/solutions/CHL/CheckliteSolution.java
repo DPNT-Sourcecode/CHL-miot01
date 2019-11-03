@@ -13,7 +13,7 @@ public class CheckliteSolution {
     private Map<String, Item> marketDatabase = new HashMap<>();
 
     public CheckliteSolution() {
-        
+        Item itemA = new Item()
     }
 
     public CheckliteSolution(List<Item> items) {
@@ -50,4 +50,5 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 

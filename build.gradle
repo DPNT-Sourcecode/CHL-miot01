@@ -1,6 +1,9 @@
 apply plugin: 'java'
 apply plugin: "jacoco"
 
+plugins {
+    id "io.freefair.lombok" version "4.1.3"
+}
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
 group 'io.befaster'
@@ -14,11 +17,13 @@ repositories {
     }
 }
 
+
+
 dependencies {
     compile 'ro.ghionoiu:tdl-client-java:0.26.1'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
     compile 'com.google.guava:guava:18.0'
-
+    compileOnly 'org.projectlombok:lombok:1.18.10'
 
     testCompile ('junit:junit:4.12') {
         exclude module : 'hamcrest-core'
@@ -65,3 +70,4 @@ jacocoTestReport {
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
+
