@@ -91,4 +91,14 @@ public class ItemTest {
         Map<String, Long> freeItems = item2.getFreeItems(1L);
         assertTrue(freeItems.isEmpty());
     }
+
+    @Test
+    public void testMultipleOffers() {
+        Integer price = item.getPrice(8L);
+        assertThat(price, equalTo(330));
+
+        Integer price2 = item.getPrice(7L);
+        assertThat(price2, equalTo(300));
+    }
 }
+
