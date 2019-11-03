@@ -14,6 +14,7 @@ public class CheckliteSolution {
         // Hardcoding this to save time
         Map<Long, Integer> itemAOffers = new HashMap<>();
         itemAOffers.put(3L, 130);
+        itemAOffers.put(5L, 200);
         Item itemA = new Item(
             "A",
             50,
@@ -117,5 +118,6 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 

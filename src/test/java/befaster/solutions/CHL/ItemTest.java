@@ -18,6 +18,7 @@ public class ItemTest {
     public void setup() {
         Map<Long, Integer> itemAOffers = new HashMap<>();
         itemAOffers.put(3L, 130);
+        itemAOffers.put(5L, 200);
         Map<Long, String> freeItemOffers = new HashMap<>();
         freeItemOffers.put(2L, "B");
         this.item = new Item(
@@ -44,16 +45,16 @@ public class ItemTest {
 
     @Test
     public void testMultipleOffersOnly() {
-        Integer price = item.getPrice(6L);
+        Integer price = item.getPrice(10L);
 
-        assertThat(price, equalTo(260));
+        assertThat(price, equalTo(400));
     }
 
     @Test
     public void testCombinedQuantity() {
-        Integer price = item.getPrice(5L);
+        Integer price = item.getPrice(6L);
 
-        assertThat(price, equalTo(230));
+        assertThat(price, equalTo(250));
     }
 
     @Test
@@ -70,6 +71,7 @@ public class ItemTest {
         assertThat(freeItems.get("B"), equalTo(2L));
     }
 }
+
 
 
 
