@@ -38,7 +38,21 @@ public class CheckliteSolutionTest {
         assertThat(quantityForC, equalTo(1L));
     }
 
+    @Test
+    public void checkQuantityEmptyInput() {
+        String input1 = null;
+        Map<String, Long> quantityPerItem = solution.getQuantityPerItems(input1);
+        assertTrue(quantityPerItem.isEmpty());
 
+        String input2 = "";
+        Map<String, Long> quantityPerItem2 = solution.getQuantityPerItems(input2);
+        assertTrue(quantityPerItem2.isEmpty());
+
+        String input3 = " ";
+        Map<String, Long> quantityPerItem3 = solution.getQuantityPerItems(input3);
+        assertTrue(quantityPerItem3.isEmpty());
+    }
 }
+
 
 
