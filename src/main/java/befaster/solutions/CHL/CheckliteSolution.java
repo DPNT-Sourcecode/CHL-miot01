@@ -11,7 +11,26 @@ public class CheckliteSolution {
     private Map<String, Item> marketDatabase = new HashMap<>();
 
     public CheckliteSolution() {
-        Item itemA = new Item()
+        // Hardcoding this to save time
+        Map<Long, Long> itemAOffers = new HashMap<>();
+        itemAOffers.put(3L, 130L);
+        Item itemA = new Item(
+            "A",
+            50L,
+            itemAOffers
+        );
+        marketDatabase.put("A", itemA);
+
+        Map<Long, Long> itemBOffers = new HashMap<>();
+        itemAOffers.put(2L, 45L);
+        Item itemB = new Item(
+            "B",
+            30L,
+            itemAOffers
+        );
+        marketDatabase.put("B", itemB);
+
+
     }
 
     public CheckliteSolution(List<Item> items) {
@@ -48,6 +67,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
