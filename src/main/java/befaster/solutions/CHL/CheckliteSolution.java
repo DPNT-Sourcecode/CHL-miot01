@@ -3,6 +3,7 @@ package befaster.solutions.CHL;
 import befaster.runner.SolutionNotImplementedException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -19,6 +20,9 @@ public class CheckliteSolution {
      * @return map of item to quantity
      */
     public Map<String, Long> getQuantityPerItems(String skus) {
+        if (skus == null || skus.isEmpty()) {
+            return Collections.emptyMap();
+        }
         // we assume that the sku is a comma separate list of items
         List<String> items = Arrays.asList(skus.split(","));
 
@@ -26,6 +30,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
