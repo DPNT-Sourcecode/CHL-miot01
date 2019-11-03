@@ -88,4 +88,13 @@ public class CheckliteSolutionTest {
         Integer price3 = solution.checklite(input3);
         assertThat(price3, equalTo(-1));
     }
+
+    @Test
+    public void testSolution() {
+        String input = "ABCDABCD";
+
+        Integer price = solution.checklite(input);
+        assertThat(price, equalTo(215));
+    }
 }
+
