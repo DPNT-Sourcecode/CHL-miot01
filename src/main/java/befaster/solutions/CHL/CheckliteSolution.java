@@ -1,15 +1,25 @@
 package befaster.solutions.CHL;
 
 import befaster.runner.SolutionNotImplementedException;
+import befaster.solutions.CHL.model.Item;
+import com.sun.tools.javac.comp.Check;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CheckliteSolution {
+
+    private Map<String, Item> marketDatabase = new HashMap<>();
+
+    public CheckliteSolution() {
+        
+    }
+
+    public CheckliteSolution(List<Item> items) {
+
+    }
+
     public Integer checklite(String skus) {
         Map<String, Long> basket = getQuantityPerItems(skus);
 
@@ -40,3 +50,4 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
