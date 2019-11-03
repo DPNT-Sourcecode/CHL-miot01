@@ -22,11 +22,11 @@ public class CheckliteSolution {
         marketDatabase.put("A", itemA);
 
         Map<Long, Integer> itemBOffers = new HashMap<>();
-        itemAOffers.put(2L, 45);
+        itemBOffers.put(2L, 45);
         Item itemB = new Item(
             "B",
             30,
-            itemAOffers
+            itemBOffers
         );
         marketDatabase.put("B", itemB);
 
@@ -60,11 +60,13 @@ public class CheckliteSolution {
                 Long quantity = basket.get(key);
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem == null) {
-                    System.out.println("couldn't find item " + key);
+                    System.out.println(key + " " + 0);
                     return 0;
                 }
                 else {
-                    return currentItem.getPrice(quantity);
+                    Integer price = currentItem.getPrice(quantity);
+                    System.out.println(key + " " + price);
+                    return price;
                 }
             })
             .sum();
@@ -103,6 +105,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
