@@ -95,6 +95,11 @@ public class CheckliteSolution {
                     Map<String, Long> freeItems = currentItem.getFreeItems(basket.get(key));
                 }
             })
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (m1, m2) -> 
+            ))
     }
 
     private boolean isInputValid(String skus) {
@@ -130,6 +135,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
