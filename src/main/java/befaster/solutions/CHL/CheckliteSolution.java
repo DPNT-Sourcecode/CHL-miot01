@@ -85,7 +85,7 @@ public class CheckliteSolution {
      * @param skus comma separated list of items
      * @return map of item to quantity
      */
-    public Map<String, Long> getQuantityPerItems(String skus) {
+    public Map<Character, Long> getQuantityPerItems(String skus) {
         if (skus == null || skus.isEmpty()) {
             return Collections.emptyMap();
         }
@@ -93,10 +93,11 @@ public class CheckliteSolution {
         skus = skus.replaceAll("\\s+","");
 
         // we assume that the sku is a comma separate list of items
-        List<String> items = Arrays.asList(skus.split(","));
+        List<Character> items = skus.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
 
         return items.stream()
-            .filter(string -> ! string.isEmpty())
+            .map(character -> new String(character))
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
