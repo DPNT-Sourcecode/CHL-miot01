@@ -30,9 +30,14 @@ public class AvailableFreeOffer {
     }
 
     public Long getValidQuantity(Long basketQuantity) {
-        if (basketQuantity < offer.getRequiredQuantity()) {
+        if (offer.getRequiredQuantity() == null) {
+            return quantity;
+        }
+        else if (basketQuantity < offer.getRequiredQuantity()) {
             return 0L;
         }
-        return basketQuantity/offer.getRequiredQuantity();
+
+        return basketQuantity/offer.getRequiredQuantity() * quantity;
     }
 }
+
