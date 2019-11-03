@@ -11,12 +11,11 @@ public class Item {
     private Integer defaultPrice;
     // map of special offers, quantity - price
     private Map<Long, Integer> specialOffers;
+    private Long highestOfferQuantity;
 
     // map of free item offers, quantity -item sku
     private Map<Long, String> freeItemOffers;
-
-
-    private Long highestOfferQuantity = null;
+    private Long highestFreeItemQuantity;
 
     public Item(
         String sku,
@@ -46,6 +45,20 @@ public class Item {
         }
     }
 
+    public Map<String, Long> getFreeItems(Long quantity) {
+        if (! freeItemOffers.isEmpty() && quantity > getHighestFreeItemQuantity()) {
+            Long offerNumber = quantity/getHighestOfferQuantity();
+            
+        }
+    }
+
+    private Long getHighestFreeItemQuantity() {
+        if (highestFreeItemQuantity == null) {
+            highestFreeItemQuantity = freeItemOffers.keySet().stream().max(Long::compareTo).orElse(1L);
+        }
+        return highestFreeItemQuantity;
+    }
+
     private Long getHighestOfferQuantity() {
         if (highestOfferQuantity == null) {
             highestOfferQuantity = specialOffers.keySet().stream().max(Long::compareTo).orElse(1L);
@@ -53,6 +66,3 @@ public class Item {
         return highestOfferQuantity;
     }
 }
-
-
-

@@ -97,4 +97,3 @@ public class CheckliteSolutionTest {
         assertThat(price, equalTo(215));
     }
 }
-
