@@ -99,9 +99,10 @@ public class CheckliteSolution {
                     return Collections.emptyMap().entrySet().stream();
                 }
             })
-            .collect(Collectors.groupingBy(Map.Entry::getKey,
-                Collectors.summingInt(Map.Entry::getValue)));
-
+            .collect(
+                Collectors.groupingBy(Map.Entry::getKey,
+                Collectors.summarizingLong(Map.Entry::getValue))
+            );
     }
 
     private boolean isInputValid(String skus) {
@@ -137,3 +138,4 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
