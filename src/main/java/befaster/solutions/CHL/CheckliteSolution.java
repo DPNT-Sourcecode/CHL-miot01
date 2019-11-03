@@ -174,7 +174,7 @@ public class CheckliteSolution {
             .price(40)
             .addFreeItemOffer(3L, new FreeItemOfferBuilder()
                 .quantity(1L)
-                .requiredQuantity(3L)
+                .requiredQuantity(4L)
                 .item("U")
                 .build()
             )
@@ -322,9 +322,3 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-
-
-
