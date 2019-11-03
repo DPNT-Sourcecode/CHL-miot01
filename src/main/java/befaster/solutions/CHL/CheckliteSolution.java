@@ -89,15 +89,17 @@ public class CheckliteSolution {
 
     private Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
         return basket.keySet().stream()
-            .flatMap(key -> {
+            .map(key -> {
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem != null) {
-                    return currentItem.getFreeItems(basket.get(key)).entrySet().stream();
+                    return currentItem.getFreeItems(basket.get(key));
                 }
                 else {
-                    return Collections.emptyMap().entrySet().stream();
+                    return Collections.emptyMap();
                 }
             })
+            .map(Map::entrySet)
+            .flatMap()
             .collect(
                 Collectors.groupingBy(
                     Map.Entry::getKey,
@@ -139,5 +141,6 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
