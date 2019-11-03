@@ -114,5 +114,3 @@ public class CheckliteSolutionTest {
         assertThat(freeItems.get("B"), equalTo(2L));
     }
 }
-
-
