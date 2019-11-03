@@ -66,8 +66,10 @@ public class CheckliteSolution {
     }
 
     private boolean isInputValid(String skus) {
-        Arrays.asList(skus.toCharArray()).stream()
-            .allMatch(c -> c.)
+        char[] chars = skus.toCharArray();
+        for (char c: chars) {
+            if (c)
+        }
     }
 
     /**
@@ -90,4 +92,5 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
