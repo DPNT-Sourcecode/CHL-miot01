@@ -83,13 +83,19 @@ public class CheckliteSolution {
         }
 
         // remove free items
-        final Map<FreeItemOffer, Long> freeItems = getFreeItemsForBasket(basket);
+        final Map<String, AvailableFreeOffer> freeItems = getFreeItemsForBasket(basket);
         Map<String, Long> finalBasket = basket.entrySet().stream()
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
                 entry -> {
-                    Long freeItemCount = freeItems.getOrDefault(entry.getKey(), 0L);
-                    return entry.getValue() - freeItemCount;
+                    AvailableFreeOffer freeOffer = freeItems.getOrDefault(entry.getKey(), null);
+                    if (freeOffer != null && freeOffer.getOffer().getRequiredQuantity() > basket.get(entry.getKey())) {
+
+                        return entry.getValue() - freeOffer.getQuantity();
+                    }
+                    else {
+                        entry.getValue();
+                    }
                 }
             ))
             .entrySet()
@@ -117,7 +123,7 @@ public class CheckliteSolution {
     }
 
     // Is public only for testing.. doing this for speed
-    public Map<FreeItemOffer, Long> getFreeItemsForBasket(Map<String, Long> basket) {
+    public Map<String, AvailableFreeOffer> getFreeItemsForBasket(Map<String, Long> basket) {
         return basket.keySet().stream()
             .map(key -> {
                 Item currentItem = marketDatabase.get(key);
@@ -172,6 +178,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
