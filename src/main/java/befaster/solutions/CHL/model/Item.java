@@ -1,6 +1,7 @@
 package befaster.solutions.CHL.model;
 
 import java.util.Map;
+import java.util.Optional;
 
 
 public class Item {
@@ -35,7 +36,9 @@ public class Item {
 
         }
         else {
-            return specialOffers.getOrDefault(quantity, defaultPrice);
+            return Optional
+                .ofNullable(specialOffers.get(quantity))
+                .orElse(quantity.intValue() * defaultPrice);
         }
     }
 
@@ -46,4 +49,5 @@ public class Item {
         return highestOfferQuantity;
     }
 }
+
 

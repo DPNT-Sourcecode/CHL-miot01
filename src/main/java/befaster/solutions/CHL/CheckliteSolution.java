@@ -60,6 +60,7 @@ public class CheckliteSolution {
                 Long quantity = basket.get(key);
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem == null) {
+                    System.out.println("couldn't find item " + key);
                     return 0;
                 }
                 else {
@@ -102,5 +103,6 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
