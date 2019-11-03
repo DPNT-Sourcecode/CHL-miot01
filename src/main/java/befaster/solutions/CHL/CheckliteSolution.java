@@ -93,13 +93,14 @@ public class CheckliteSolution {
             .flatMap(key -> {
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem != null) {
-                    return currentItem.getFreeItems(basket.get(key)).entrySet().stream();
+                    return currentItem.getFreeItems(basket.get(key)).entrySet();
                 }
                 else {
-                    return Stream.empty();
+                    return Collections.emptyMap().entrySet();
                 }
             })
-            
+            .reduce()
+
     }
 
     private boolean isInputValid(String skus) {
@@ -135,6 +136,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
