@@ -1,8 +1,6 @@
 package befaster.solutions.CHL;
 
-import befaster.solutions.CHL.model.AvailableFreeOffer;
-import befaster.solutions.CHL.model.FreeItemOffer;
-import befaster.solutions.CHL.model.Item;
+import befaster.solutions.CHL.model.*;
 
 import java.util.*;
 import java.util.function.Function;
@@ -14,25 +12,19 @@ public class CheckliteSolution {
 
     public CheckliteSolution() {
         // Hardcoding this to save time
-        Map<Long, Integer> itemAOffers = new HashMap<>();
-        itemAOffers.put(3L, 130);
-        itemAOffers.put(5L, 200);
-        Item itemA = new Item(
-            "A",
-            50,
-            itemAOffers,
-            Collections.emptyMap()
-        );
+        Item itemA = new ItemBuilder()
+            .sku("A")
+            .price(50)
+            .addSpecialOffer(3L, 130)
+            .addSpecialOffer(5L, 200)
+            .build();
         marketDatabase.put("A", itemA);
 
-        Map<Long, Integer> itemBOffers = new HashMap<>();
-        itemBOffers.put(2L, 45);
-        Item itemB = new Item(
-            "B",
-            30,
-            itemBOffers,
-            Collections.emptyMap()
-        );
+        Item itemB = new ItemBuilder()
+            .sku("B")
+            .price(30)
+            .addSpecialOffer(2L, 45)
+            .build();
         marketDatabase.put("B", itemB);
 
         Item itemC = new Item(
@@ -51,16 +43,30 @@ public class CheckliteSolution {
         );
         marketDatabase.put("D", itemD);
 
-        Map<Long, FreeItemOffer> freeItemsE = new HashMap<>();
-        freeItemsE.put(2L, new FreeItemOffer("B", 1L, null));
-        Item itemE = new Item(
-            "E",
-            40,
-            Collections.emptyMap(),
-            freeItemsE
-        );
+        Item itemE = new ItemBuilder()
+            .sku("E")
+            .price(40)
+            .addFreeItemOffer(
+                2L,
+                new FreeItemOfferBuilder()
+                    .item("B")
+                    .quantity(1L)
+                    .build()
+            )
+            .build();
         marketDatabase.put("E", itemE);
 
+        Item itemF = new ItemBuilder()
+            .sku("F")
+            .price(10)
+            .addFreeItemOffer(
+                2L,
+                new FreeItemOfferBuilder()
+                    .item("B")
+                    .quantity(1L)
+                    .build()
+            )
+            .build();
         Map<Long, FreeItemOffer> freeItemsF = new HashMap<>();
         freeItemsF.put(2L, new FreeItemOffer("F", 1L, 3L));
         Item itemF = new Item(
@@ -180,3 +186,4 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
