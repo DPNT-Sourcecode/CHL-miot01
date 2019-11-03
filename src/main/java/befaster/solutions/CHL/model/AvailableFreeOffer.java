@@ -37,7 +37,8 @@ public class AvailableFreeOffer {
             return 0L;
         }
 
-        return basketQuantity/offer.getRequiredQuantity() * quantity;
+        return basketQuantity/offer.getRequiredQuantity() * offer.getQuantity();
     }
 }
+
 
