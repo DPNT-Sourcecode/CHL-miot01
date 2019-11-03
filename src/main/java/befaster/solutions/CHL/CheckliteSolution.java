@@ -13,7 +13,11 @@ public class CheckliteSolution {
     public Integer checklite(String skus) {
         Map<String, Long> basket = getQuantityPerItems(skus);
 
-        
+        basket.keySet().stream()
+            .map(key -> {
+                Long quantity = basket.get(key);
+
+            });
     }
 
     /**
@@ -36,9 +40,3 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
-
-
-
-
-
-

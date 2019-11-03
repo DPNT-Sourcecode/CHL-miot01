@@ -60,7 +60,3 @@ public class CheckliteSolutionTest {
         assertThat(quantityPerItem.size(), equalTo(1));
     }
 }
-
-
-
-
