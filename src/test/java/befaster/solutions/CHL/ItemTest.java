@@ -35,8 +35,24 @@ public class ItemTest {
 
     @Test
     public void testOneOffer() {
-        
+        Integer price = item.getPrice(3L);
+
+        assertThat(price, equalTo(130));
     }
 
+    @Test
+    public void testMultipleOffersOnly() {
+        Integer price = item.getPrice(6L);
+
+        assertThat(price, equalTo(260));
+    }
+
+    @Test
+    public void testCombinedQuantity() {
+        Integer price = item.getPrice(5L);
+
+        assertThat(price, equalTo(230));
+    }
 }
+
 
