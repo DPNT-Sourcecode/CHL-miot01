@@ -3,6 +3,7 @@ package befaster.solutions.CHL.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 
 public class Item {
@@ -34,7 +35,7 @@ public class Item {
         Integer price = 0;
         while (remainingQuantity > 0) {
             // get highest offer
-            Long highestOfferQuantity = getHighestQuantityOffer(remainingQuantity);
+            Long highestOfferQuantity = getHighestQuantityOffer(specialOffers.keySet(), remainingQuantity);
             if (highestOfferQuantity == 0) {
                 break;
             }
@@ -48,8 +49,8 @@ public class Item {
         return price;
     }
 
-    private Long getHighestQuantityOffer(Long quantity) {
-        return specialOffers.keySet()
+    private Long getHighestQuantityOffer(Set<Long> quantityForOffer, Long quantity) {
+        return quantityForOffer
             .stream()
             .filter(offerQuantity -> offerQuantity <= quantity)
             .max(Long::compareTo)
@@ -73,6 +74,20 @@ public class Item {
         return freeItems;
     }
 
+    private Long getNumberOfFreeItems(Long quantity) {
+        Long remainingQuantity = quantity;
+        Integer number = 0;
+        while (remainingQuantity > 0) {
+            // get highest offer
+            Long highestOfferQuantity = getHighestQuantityOffer(freeItemOffers.keySet(), remainingQuantity);
+            if (highestOfferQuantity == 0) {
+                break;
+            }
+            remainingQuantity -= highestOfferQuantity;
+            price += specialOffers.get(highestOfferQuantity);
+        }
+    }
+
     private Long getHighestFreeItemQuantity() {
         if (highestFreeItemQuantity == null) {
             highestFreeItemQuantity = freeItemOffers.keySet().stream().max(Long::compareTo).orElse(1L);
@@ -81,6 +96,7 @@ public class Item {
     }
 
 }
+
 
 
 
