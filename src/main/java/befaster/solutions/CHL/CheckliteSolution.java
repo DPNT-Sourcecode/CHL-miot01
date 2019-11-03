@@ -5,6 +5,7 @@ import befaster.solutions.CHL.model.Item;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CheckliteSolution {
 
@@ -89,17 +90,16 @@ public class CheckliteSolution {
 
     private Map<String, Long> getFreeItemsForBasket(Map<String, Long> basket) {
         basket.keySet().stream()
-            .map(key -> {
+            .flatMap(key -> {
                 Item currentItem = marketDatabase.get(key);
                 if (currentItem != null) {
-                    Map<String, Long> freeItems = currentItem.getFreeItems(basket.get(key));
+                    return currentItem.getFreeItems(basket.get(key)).entrySet().stream();
+                }
+                else {
+                    return Stream.empty();
                 }
             })
-            .collect(Collectors.toMap(
-                Map.Entry::getKey,
-                Map.Entry::getValue,
-                (m1, m2) -> 
-            ))
+            
     }
 
     private boolean isInputValid(String skus) {
@@ -135,6 +135,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
