@@ -1,5 +1,6 @@
 package befaster.solutions.CHL;
 
+import befaster.solutions.CHL.model.AvailableFreeOffer;
 import befaster.solutions.CHL.model.FreeItemOffer;
 import befaster.solutions.CHL.model.Item;
 
@@ -124,7 +125,7 @@ public class CheckliteSolution {
                     return currentItem.getFreeItems(basket.get(key));
                 }
                 else {
-                    return Collections.<FreeItemOffer, Long>emptyMap();
+                    return Collections.<String, AvailableFreeOffer>emptyMap();
                 }
             })
             .map(Map::entrySet)
@@ -171,6 +172,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
