@@ -143,16 +143,20 @@ public class CheckliteSolutionTest {
         assertThat(price3, equalTo(30));
     }
 
-    /**
-     *  - {"method":"checklite","params":["ABCDEFABCDEF"],"id":"CHL_R3_044"}, expected: 300, got: 270
-     *  - {"method":"checklite","params":["CDFFAECBDEAB"],"id":"CHL_R3_045"}, expected: 300, got: 270
-     *  - {"method":"checklite","params":["AAAAAEEBAAABBFFF"],"id":"CHL_R3_046"}, expected: 475, got: 430
-     */
     @Test
-    public void testAllItemsTwice() {
+    public void testCombinedOfferTypes() {
         String input = "ABCDEFABCDEF";
         Integer price = solution.checklite(input);
         assertThat(price, equalTo(300));
+
+        String input2 = "CDFFAECBDEAB";
+        Integer price2 = solution.checklite(input2);
+        assertThat(price2, equalTo(300));
+
+        String input3 = "AAAAAEEBAAABBFFF";
+        Integer price3 = solution.checklite(input3);
+        assertThat(price3, equalTo(475));
     }
 }
+
 
