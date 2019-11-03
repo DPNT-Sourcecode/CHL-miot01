@@ -73,5 +73,21 @@ public class CheckliteSolutionTest {
 
         assertThat(price, equalTo(195));
     }
+
+    @Test
+    public void testInvalidInput() {
+        String input1 = "ABCa";
+        Integer price1 = solution.checklite(input1);
+        assertThat(price1, equalTo(-1));
+
+        String input2 = "-";
+        Integer price2 = solution.checklite(input2);
+        assertThat(price2, equalTo(-1));
+
+        String input3 = "a";
+        Integer price3 = solution.checklite(input3);
+        assertThat(price3, equalTo(-1));
+    }
 }
+
 

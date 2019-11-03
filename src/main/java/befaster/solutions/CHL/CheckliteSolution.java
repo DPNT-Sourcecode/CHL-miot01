@@ -46,6 +46,10 @@ public class CheckliteSolution {
     }
 
     public Integer checklite(String skus) {
+        if (! isInputValid(skus)) {
+            return -1;
+        }
+
         Map<String, Long> basket = getQuantityPerItems(skus);
         if (basket.isEmpty()) {
             return 0;
@@ -68,8 +72,12 @@ public class CheckliteSolution {
     private boolean isInputValid(String skus) {
         char[] chars = skus.toCharArray();
         for (char c: chars) {
-            if (c)
+            if (! Character.isUpperCase(c)) {
+                return false;
+            }
         }
+
+        return true;
     }
 
     /**
@@ -92,5 +100,6 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
