@@ -139,7 +139,47 @@ public class CheckliteSolution {
             .build();
         marketDatabase.put("P", itemP);
 
-        
+        Item itemQ = new ItemBuilder()
+            .sku("Q")
+            .price(30)
+            .addSpecialOffer(3L, 80)
+            .build();
+        marketDatabase.put("Q", itemQ);
+
+        Item itemR = new ItemBuilder()
+            .sku("R")
+            .price(50)
+            .addFreeItemOffer(3L, new FreeItemOfferBuilder()
+                .quantity(1L)
+                .item("Q")
+                .build()
+            )
+            .build();
+        marketDatabase.put("R", itemR);
+
+        Item itemS = new ItemBuilder()
+            .sku("S")
+            .price(30)
+            .build();
+        marketDatabase.put("S", itemS);
+
+        Item itemT = new ItemBuilder()
+            .sku("T")
+            .price(20)
+            .build();
+        marketDatabase.put("T", itemT);
+
+        Item itemU = new ItemBuilder()
+            .sku("U")
+            .price(40)
+            .addFreeItemOffer(3L, new FreeItemOfferBuilder()
+                .quantity(1L)
+                .requiredQuantity(3L)
+                .item("U")
+                .build()
+            )
+            .build();
+        marketDatabase.put("U", itemU);
     }
 
     public Integer checklite(String skus) {
@@ -250,6 +290,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 
