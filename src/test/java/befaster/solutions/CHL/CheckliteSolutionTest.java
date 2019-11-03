@@ -105,6 +105,14 @@ public class CheckliteSolutionTest {
         assertThat(price, equalTo(80));
     }
 
-    
+    @Test
+    public void testNumberOfFreeItems() {
+        String input = "EEEE";
+        Map<String, Long> basket = solution.getQuantityPerItems(input);
+        Map<String, Long> freeItems = solution.getFreeItemsForBasket(basket);
+
+        assertThat(freeItems.get("B"), equalTo(2L));
+    }
 }
+
 
