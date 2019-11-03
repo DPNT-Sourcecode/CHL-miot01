@@ -70,6 +70,8 @@ public class CheckliteSolution {
             return 0;
         }
 
+        // remove free items
+
         return basket.keySet().stream()
             .mapToInt(key -> {
                 Long quantity = basket.get(key);
@@ -84,6 +86,8 @@ public class CheckliteSolution {
             })
             .sum();
     }
+
+    
 
     private boolean isInputValid(String skus) {
         char[] chars = skus.toCharArray();
@@ -118,6 +122,7 @@ public class CheckliteSolution {
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
+
 
 
 

@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +71,28 @@ public class ItemTest {
 
         assertThat(freeItems.get("B"), equalTo(2L));
     }
+
+    @Test
+    public void noFreeItem() {
+        Map<String, Long> freeItems = item.getFreeItems(1L);
+
+        assertTrue(freeItems.isEmpty());
+    }
+
+    @Test
+    public void noFreeItemOffer() {
+        Item item2 = new Item(
+            "B",
+            50,
+            Collections.emptyMap(),
+            Collections.emptyMap()
+        );
+
+        Map<String, Long> freeItems = item2.getFreeItems(1L);
+        assertTrue(freeItems.isEmpty());
+    }
 }
+
 
 
 
